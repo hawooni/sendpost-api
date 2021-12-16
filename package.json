@@ -1,0 +1,39 @@
+{
+  "name": "sendpost-api",
+  "version": "0.1.0",
+  "description": "It is an open-source SMTP API designed to host your send-only email server for serverless workers or public websites to send and relay emails.",
+  "private": true,
+  "scripts": {
+    "start": "node server",
+    "docker:build": "docker build . -t hawooni/sendpost-api:latest",
+    "prettier": "prettier --write '**/*.{js,json,yaml,md,hbs}'"
+  },
+  "_moduleAliases": {
+    "@lib": "lib",
+    "@config": "config",
+    "@route": "src/routes",
+    "@validator": "src/validator",
+    "@middleware": "src/middleware",
+    "@controller": "src/controller"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-bearer-token": "^2.4.0",
+    "express-rate-limit": "^5.5.1",
+    "express-validator": "^6.14.0",
+    "helmet": "^4.6.0",
+    "module-alias": "^2.2.2",
+    "moment": "^2.29.1",
+    "nodemailer": "^6.7.2",
+    "nodemailer-express-handlebars": "^4.0.0",
+    "sanitize-html": "^2.6.1",
+    "winston": "^3.3.3",
+    "yargs": "^17.3.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  }
+}

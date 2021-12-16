@@ -1,0 +1,10 @@
+ssl
+dkim
+nginx
+node_modules
+package-lock.json
+.development
+.env
+.env.dev
+.env.prod
+*.zip

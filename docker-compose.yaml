@@ -1,0 +1,38 @@
+version: '3'
+services:
+  smtp:
+    image: namshi/smtp
+    container_name: sendpost-smtp
+    restart: always
+    expose:
+      - '25'
+    volumes:
+      - ./dkim/config:/etc/exim4/_docker_additional_macros:ro
+      - ./dkim/private.key:/etc/exim4/domain.key:ro
+    environment:
+      - DISABLE_IPV6=true
+      - RELAY_DOMAINS=*
+  api:
+    image: hawooni/sendpost-api
+    container_name: sendpost-api
+    restart: always
+    depends_on:
+      - smtp
+    ports:
+      - '8080:8080'
+    environment:
+      - SMTP_HOST=smtp
+      - SERVER_HOST=0.0.0.0
+      - PROXY_TRUST=true
+      ## required ##
+      - RELAY_TO_EMAIL
+      - RELAY_FROM_EMAIL
+      ## optional ##
+      - RELAY_FROM_NAME
+      - SUBMIT_FROM_URL
+      - SEND_AUTH_KEY
+      - RECAPTCHA_SECRET_KEY
+      - RATE_LIMIT
+      - RATE_LIMIT_MINUTE
+      - CORS_ORIGIN
+      - LOG
